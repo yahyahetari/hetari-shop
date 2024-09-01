@@ -6,6 +6,20 @@ import { Product } from "@/models/Products";
 import { MinusCircle, PlusCircle } from "lucide-react";
 import Loader from "@/components/Loader";
 
+// دالة مساعدة لتحويل اسم اللون إلى كود HEX
+const getColorHex = (colorName) => {
+  const colors = {
+    red: "#FF0000",
+    blue: "#020e77",
+    green: "#00FF00",
+    yellow: "#FFFF00",
+    black: "#000000",
+    white: "#FFFFFF",
+    // يمكنك إضافة المزيد من الألوان هنا
+  };
+  return colors[colorName.toLowerCase()] || colorName;
+};
+
 export default function ProductPage({ product }) {
     const { addToCart } = useContext(CartContext);
     const [selectedProperties, setSelectedProperties] = useState({});
@@ -54,6 +68,8 @@ export default function ProductPage({ product }) {
         addToCart(product._id, selectedProperties, quantity);
     };
 
+    const isColorProperty = (name) => name.toLowerCase() === "color" || name.toLowerCase() === "لون";
+
     return (
         <div className="max-w-6xl mx-auto p-4 flex flex-col md:flex-row gap-6">
             <div className="flex-shrink-0 w-full md:w-1/2 flex items-center justify-center">
@@ -75,14 +91,25 @@ export default function ProductPage({ product }) {
                                         <p className="text-base font-semibold">{name} :</p>
                                         <div className="flex gap-2 flex-wrap">
                                             {values.map((value, idx) => (
-                                                <button
-                                                    type="button"
-                                                    key={idx}
-                                                    className={`py-1 px-2 rounded-lg border border-black  ${selectedProperties[name] === value ? 'bg-black text-white' : 'text-black'}`}
-                                                    onClick={() => toggleProperty(name, value)}
-                                                >
-                                                    {value}
-                                                </button>
+                                                isColorProperty(name) ? (
+                                                    <button
+                                                        type="button"
+                                                        key={idx}
+                                                        className={`w-7 h-7 rounded-full border border-black ${selectedProperties[name] === value ? 'ring-2 ring-offset-2 ring-black' : ''}`}
+                                                        style={{ backgroundColor: getColorHex(value) }}
+                                                        onClick={() => toggleProperty(name, value)}
+                                                        title={value}
+                                                    />
+                                                ) : (
+                                                    <button
+                                                        type="button"
+                                                        key={idx}
+                                                        className={`py-1 px-2 rounded-lg border border-black ${selectedProperties[name] === value ? 'bg-black text-white' : 'text-black'}`}
+                                                        onClick={() => toggleProperty(name, value)}
+                                                    >
+                                                        {value}
+                                                    </button>
+                                                )
                                             ))}
                                         </div>
                                     </div>
