@@ -72,12 +72,14 @@ export default function ProductBox({ _id, title, description, images, price, cat
 
   return (
     <div className="flex flex-col gap-1 mt-3 mb-3 border border-slate-800 rounded-lg">
-       <Link href={`/product/${_id}`}>
+      <Link href={`/product/${_id}`}>
         <div className="relative overflow-hidden group">
           <img
             src={images[0]}
             alt="product"
-            className={`${styles.productImage} rounded-md m-1.5 transition-transform duration-300 group-hover:scale-105 bg-white object-cover cursor-pointer`}
+            width={250}
+            height={300}
+            className="h-[180px] w-[180px] rounded-md m-1.5 transition-transform duration-300 group-hover:scale-105 bg-white object-cover cursor-pointer"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-95 transition-opacity duration-300">
             <span className="text-white text-lg font-semibold">View Details</span>
