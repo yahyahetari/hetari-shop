@@ -26,7 +26,6 @@ export default function Home({productsList}) {
             <img src="/banner.png" className="hidden md:block w-full" alt="Banner"/>
             <img src="/banner1.png" className="block md:hidden w-full" alt="Banner 1"/>
             <div>
-                <h1 className="text-3xl ml-20 m-2 font-semibold">New Arrivals</h1>
                 <ProductsList products={productsList} />
             </div>
         </div>
