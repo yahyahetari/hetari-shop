@@ -24,10 +24,6 @@ export default function Products({ productsList }) {
 
     return (
         <div>
-           <h1 className="text-3xl ml-20 m-2 font-semibold animate-marquee">
-              Products
-           </h1>
-
             <ProductsList products={productsList} />
         </div>
     );
