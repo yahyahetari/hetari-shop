@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type="number"],
+input[type="text"] {
+  unicode-bidi: plaintext;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border: 1px soli;
+}
+
+label {
+  @apply block text-xl font-normal text-gray-800 justify-start ;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+
+}
+body{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.bg{
+  background: #d6d6d6;
+}
+
+.icon-white path {
+  fill: white;
+}
+
+.btn-red {
+  @apply text-white bg-red-600 hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2;
+}
+
+.btn-default {
+  @apply text-gray-900 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-500;
+}
+@keyframes loader-animation {
+  0% {
+      transform: rotate(180deg) translateY(0);
+  }
+  50% {
+      transform: rotate(180deg) translateY(-10px);
+  }
+  100% {
+      transform: rotate(180deg) translateY(0);
+  }
+}
+@keyframes loader-animation {
+  0%, 100% { transform: rotate(180deg) translateY(0); }
+  25% { transform: rotate(180deg) translateY(-5px); }
+  50% { transform: rotate(180deg) translateY(-10px); }
+  75% { transform: rotate(180deg) translateY(-5px); }
+}
+.search-results {
+  background-color: #f0f4f8;
+}
+
+.text-gradient {
+  background: linear-gradient(45deg, #3490dc, #6574cd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-primary {
+  background-color: #3490dc;
+}
+
+.bg-primary-dark {
+  background-color: #2779bd;
+}
+
+.bg-secondary {
+  background-color: #6574cd;
+}
+
+.bg-accent {
+  background-color: #f6ad55;
+}
+
+.bg-accent-dark {
+  background-color: #ed8936;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  accent-color: #f6ad55;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
