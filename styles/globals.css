@@ -86,3 +86,15 @@ input[type="checkbox"], input[type="radio"] {
 .shadow-lg {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
+@keyframes marquee {
+    0% { transform: translateX(-100%); } /* البداية من خارج الشاشة من اليسار */
+    100% { transform: translateX(100%); } /* النهاية خارج الشاشة من اليمين */
+}
+
+.animate-marquee {
+    display: inline-block; /* عرض النص كمحتوى داخلي */
+    white-space: nowrap; /* منع التفاف النص */
+    overflow: hidden; /* منع ظهور أي جزء من النص خارج الحاوية */
+    animation: marquee 10s linear infinite; /* تطبيق الحركة */
+}
