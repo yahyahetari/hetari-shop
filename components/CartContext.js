@@ -21,11 +21,11 @@ export function CartContextProvider({ children }) {
         }
     }, [cart]);
 
-    function addToCart(productId, selectedProperties, quantity) {
+    function addToCart(productId, selectedProperties, quantity = 1) {
         const newItems = Array(quantity).fill({ id: productId, properties: selectedProperties });
         setCart(prev => [...prev, ...newItems]);
-        toast.success(`${quantity} items added to cart`);
-    }
+        toast.success(`${quantity} item${quantity > 1 ? 's' : ''} added to cart`);
+      }
 
     function removeFromCart(productId, properties) {
         setCart(prev => prev.filter(item => !(item.id === productId && JSON.stringify(item.properties) === JSON.stringify(properties))));
