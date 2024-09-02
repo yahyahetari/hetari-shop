@@ -9,6 +9,7 @@ import { useSession, signOut } from "next-auth/react";
 const navLinks = [
   { url: "/", label: "Home" },
   { url: "/products", label: "Products" },
+  { url: "/categories", label: "Categories" },
 ];
 
 export default function Header() {

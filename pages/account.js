@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import { useSession,signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { FaSearch, FaChevronLeft, FaChevronRight, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaGlobe, FaEdit } from 'react-icons/fa';
 import Loader from "@/components/Loader";
 
@@ -48,23 +48,23 @@ export default function Account() {
 
     const handleSignOut = async () => {
         try {
-          // حذف المستخدم
-          const response = await fetch("/api/deleteUser", {
-            method: "DELETE",
-          });
-    
-          if (response.ok) {
-            // إذا تم حذف المستخدم بنجاح، قم بتسجيل الخروج
-            await signOut({ callbackUrl: "/" });
-          } else {
-            console.error("Failed to delete user");
-            // يمكنك إضافة معالجة الأخطاء هنا
-          }
+            // حذف المستخدم
+            const response = await fetch("/api/deleteUser", {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                // إذا تم حذف المستخدم بنجاح، قم بتسجيل الخروج
+                await signOut({ callbackUrl: "/" });
+            } else {
+                console.error("Failed to delete user");
+                // يمكنك إضافة معالجة الأخطاء هنا
+            }
         } catch (error) {
-          console.error("Error during sign out:", error);
-          // يمكنك إضافة معالجة الأخطاء هنا
+            console.error("Error during sign out:", error);
+            // يمكنك إضافة معالجة الأخطاء هنا
         }
-      };
+    };
 
     const handleOrderClick = (orderId) => {
         localStorage.setItem('currentPage', currentPage);
@@ -115,7 +115,7 @@ export default function Account() {
                 <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                     <h1 className="text-2xl font-bold text-gray-800">Your Account</h1>
                     <div className="flex items-center space-x-4">
-                    <button onClick={handleSignOut} className="block w-full text-left text-lg bg-slate-200 rounded-3xl px-4 py-2 hover:text-red-700 hover:bg-gray-100">Sign Out</button>
+                        <button onClick={handleSignOut} className="block w-full text-left text-lg bg-slate-200 rounded-3xl px-4 py-2 hover:text-red-700 hover:bg-gray-100">Sign Out</button>
                     </div>
                 </div>
             </nav>
@@ -160,7 +160,7 @@ export default function Account() {
                     {/* Orders Section */}
                     <div className="md:w-2/3">
                         <div className="bg-white rounded-lg shadow-md p-6">
-                        <h2 className="text-2xl font-semibold mb-4">Your Orders</h2>
+                            <h2 className="text-2xl font-semibold mb-4">Your Orders</h2>
                             <div className="mb-4 flex items-center space-x-4">
                                 <div className="relative flex-grow">
                                     <input
@@ -172,7 +172,7 @@ export default function Account() {
                                     />
                                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                                 </div>
-                                
+
                             </div>
 
                             <div className="overflow-x-auto">
@@ -205,7 +205,7 @@ export default function Account() {
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     {new Date(order.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                                                 </td>
-                                                
+
                                             </tr>
                                         ))}
                                     </tbody>
@@ -218,8 +218,10 @@ export default function Account() {
                                     disabled={currentPage === 1}
                                     className="flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400"
                                 >
-                                    <FaChevronLeft className="mr-2" /> Previous
+                                    <FaChevronLeft className="mr-2" />
+                                    <span className="hidden sm:inline">Previous</span> {/* Hide on small screens */}
                                 </button>
+
                                 <div className="flex items-center space-x-2">
                                     {[...Array(totalPages).keys()].map(number => (
                                         <button
@@ -231,12 +233,14 @@ export default function Account() {
                                         </button>
                                     ))}
                                 </div>
+
                                 <button
                                     onClick={handleNextPage}
                                     disabled={currentPage === totalPages}
                                     className="flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400"
                                 >
-                                    Next <FaChevronRight className="ml-2" />
+                                    <span className="hidden sm:inline">Next</span> {/* Hide on small screens */}
+                                    <FaChevronRight className="ml-2" />
                                 </button>
                             </div>
                         </div>
