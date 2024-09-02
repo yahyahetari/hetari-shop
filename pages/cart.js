@@ -26,18 +26,36 @@ export default function Cart() {
                 setCart(JSON.parse(storedCart));
             }
         }
-        setLoading(false);
+        
+        // Set a timeout to change the loading state after 5 seconds
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 5000);
+
+        // Clear the timer if the component unmounts
+        return () => clearTimeout(timer);
     }, [setCart]);
 
     useEffect(() => {
+        let timer;
         if (cart.length > 0) {
             axios.post('/api/cart', { items: cart }).then((response) => {
                 const groupedProducts = groupProductsByProperties(response.data);
                 setProducts(groupedProducts);
+                // Only set loading to false if 5 seconds have passed
+                timer = setTimeout(() => {
+                    setLoading(false);
+                }, 5000);
             });
         } else {
             setProducts([]);
+            // Still wait 5 seconds before setting loading to false
+            timer = setTimeout(() => {
+                setLoading(false);
+            }, 5000);
         }
+
+        return () => clearTimeout(timer);
     }, [cart]);
 
     function groupProductsByProperties(products) {

@@ -144,7 +144,7 @@ export default function Header() {
           <Search className="cursor-pointer h-4 w-4 hover:text-red-1" />
         </button>
       </form>
-
+  
       <div className="hidden md:flex items-center">
         <Link href="/cart" className="flex items-center p-2 mr-3 hover:text-gray-600 relative">
           <svg xmlns="http://www.w3.org/2000/svg" className="size-8" viewBox="0 0 576 512">
@@ -156,7 +156,7 @@ export default function Header() {
             </span>
           )}
         </Link>
-
+  
         {session ? (
           <div className="relative" ref={userDropdownRef}>
             <button onClick={handleUserDropdown} className="flex items-center">
@@ -168,7 +168,7 @@ export default function Header() {
                 className="rounded-full mr-2"
               />
             </button>
-
+  
             {userDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                 <div className="px-4 py-2 border-b border-gray-200">
@@ -188,6 +188,11 @@ export default function Header() {
       </div>
       <div className="md:hidden flex items-center gap-2">
         <Menu onClick={(e) => {e.stopPropagation(); setMenuOpen(!menuOpen);}} className="cursor-pointer " />
+        {!menuOpen && cart?.length > 0 && (
+            <span className="absolute top-5 right-11 bg-red-600 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+              {cart.length}
+            </span>          
+        )}
         {session ? (
           <button onClick={() => router.push('/account')} className="flex items-center mr-2">
             <Image
@@ -203,6 +208,7 @@ export default function Header() {
             <UserCircle2 className="w-9 h-8 mr-2" />
           </Link>
         )}
+        
       </div>
       {menuOpen && (
         <div ref={menuRef} className="absolute top-16 right-0 w-full p-4 bg-white flex flex-col items-center gap-4 md:hidden z-50">
@@ -247,4 +253,4 @@ export default function Header() {
       )}
     </header>
   );
-}
+}  
