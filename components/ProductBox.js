@@ -20,12 +20,12 @@ const getColorHex = (colorName) => {
 // دالة للتحقق من الخصائص وتنسيق القيم
 const formatPropertyValue = (key, value, hasColor) => {
   const isColor = key.toLowerCase() === "color" || key.toLowerCase() === "لون";
-  
+
   if (isColor) {
     return (
       <span
         className="w-5 h-5 rounded-full inline-block border border-black"
-        style={{ 
+        style={{
           backgroundColor: getColorHex(value),
           boxShadow: value.toLowerCase() === 'white' ? 'inset 0 0 0 1px #000' : 'none'
         }}
@@ -33,12 +33,12 @@ const formatPropertyValue = (key, value, hasColor) => {
       ></span>
     );
   }
-  
+
   // إذا كان هناك لون، لا نعرض الخصائص الأخرى
   if (hasColor && !isColor) {
     return null;
   }
-  
+
   return value;
 };
 
@@ -49,7 +49,7 @@ export default function ProductBox({ _id, title, description, images, price, cat
   const propertyEntries = properties ? Object.entries(properties) : [];
 
   // التحقق مما إذا كان هناك لون
-  const hasColor = propertyEntries.some(([key]) => 
+  const hasColor = propertyEntries.some(([key]) =>
     key.toLowerCase() === "color" || key.toLowerCase() === "لون"
   );
 
@@ -77,10 +77,9 @@ export default function ProductBox({ _id, title, description, images, price, cat
           <img
             src={images[0]}
             alt="product"
-            width={250}
-            height={300}
-            className="h-[150px] w-[150px] rounded-md m-1.5 transition-transform duration-300 group-hover:scale-105 bg-white object-cover cursor-pointer"
+            className="productImage rounded-md m-1.5 transition-transform duration-300 group-hover:scale-105 bg-white object-cover cursor-pointer"
           />
+
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-95 transition-opacity duration-300">
             <span className="text-white text-lg font-semibold">View Details</span>
           </div>
