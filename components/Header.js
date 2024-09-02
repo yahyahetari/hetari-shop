@@ -133,9 +133,9 @@ export default function Header() {
           </div>
         ))}
       </nav>
-      <form onSubmit={handleSearch} className="flex gap-3 border border-grey-2 px-3 py-1 items-center rounded-lg">
+      <form onSubmit={handleSearch} className="flex gap-3 border border-grey-2 px-3 py-1 mr-1 items-center rounded-lg">
         <input
-          className="outline-none max-sm:max-w-[120px] max-md:max-w-[200px] max-lg:max-w-[120px]"
+          className="outline-none max-sm:max-w-[120px] max-md:max-w-[200px] max-lg:max-w-[120px] bg-glass"
           placeholder="Search..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
