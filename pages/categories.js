@@ -91,15 +91,15 @@ export default function Categories({ categoriesWithProducts }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-200 ">
+      <div className="max-w-full mx-auto">
         <AnimatePresence>
           {!selectedCategory && (
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="text-4xl font-bold text-center mb-8 text-gray-800"
+              className="text-4xl font-bold text-center mb-5 pt-5 text-gray-800"
             >
               Product Categories
             </motion.h1>
