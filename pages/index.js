@@ -10,7 +10,7 @@ export default function Home({productsList}) {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 5000);  // تم تغيير هذا من 1000 إلى 5000 لجعل اللودر يعمل لمدة 5 ثوانٍ
+        }, 1000);
     }, []);
 
     if (loading) {
